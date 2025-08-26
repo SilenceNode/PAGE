@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>Oops</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Teko:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+        --bg: #000;
+        --red: #ff0000;
+        --green: #00ff00;
+        --blue: #268bd2;
+        --yellow: #b58900;
+        --prompt: #d33682;
+        --cmd: #2aa198;
+        --text: #ffffff;
+        --term-bg: #1e1e1e;
+        --shadow: rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        background-color: var(--bg);
+        background-image: repeating-radial-gradient(circle at center, #111 0px, #000 2px);
+        color: var(--red);
+        font-family: 'Pixelify Sans', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    h1 {
+        font-family: 'Teko', sans-serif;
+        font-size: 4rem;
+        animation: glitch 1s infinite;
+        text-shadow: 0 0 10px var(--red), 0 0 20px var(--red);
+        position: relative;
+    }
+
+    @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(2px, -2px); }
+        60% { transform: translate(-1px, 1px); }
+        80% { transform: translate(1px, -1px); }
+        100% { transform: translate(0); }
+    }
+
+    .message {
+        font-family: Arial, sans-serif;
+        font-size: 0.9rem;
+        color: var(--text);
+        padding: 20px;
+        max-width: 600px;
+        text-align: center;
+        line-height: 1.6;
+        margin: 0 auto;
+    }
+
+    .message a {
+        color: var(--green);
+        text-decoration: underline;
+        word-break: break-word;
+    }
+
+    .timestamp {
+        color: var(--yellow);
+        font-family: monospace;
+        margin-top: 10px;
+    }
+
+    .terminal {
+        background-color: var(--term-bg);
+        color: var(--green);
+        font-family: 'Courier New', Courier, monospace;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 0 10px var(--shadow);
+        position: relative;
+    }
+
+    .header {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 5px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 5px;
+        position: relative;
+    }
+
+    .btn.red { background-color: #ff5f56; }
+    .btn.yellow { background-color: #ffbd2e; }
+    .btn.green { background-color: #27c93f; }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 53%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 10px;
+    }
+
+    .btn.red:hover::before { content: '×'; }
+    .btn.yellow:hover::before { content: '−'; }
+    .btn.green:hover::before { content: '□'; }
+
+    .content {
+        padding-top: 30px;
+    }
+
+    .line {
+        white-space: pre;
+    }
+
+    .user { color: var(--blue); }
+    .server { color: var(--yellow); }
+    .prompt { color: var(--prompt); }
+    .command { color: var(--cmd); }
+    .output { color: var(--text); }
+
+    .cursor-blink {
+        display: inline-block;
+        width: 8px;
+        animation: blink 1s step-end infinite;
+    }
+
+    .terminal a {
+        color: var(--text);
+        text-decoration: none;
+    }
+
+    .terminal a:hover {
+        color: var(--green);
+        text-decoration: underline;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+        font-size: 2.5rem;
+        }
+        .message {
+        font-size: 0.8rem;
+        padding: 15px;
+        }
+        .terminal {
+        padding: 15px;
+        margin-top: 15px;
+        }
+    }
+  </style>
+
+</head>
+<body>
+  <h1>HACKED</h1>
+
+  <div class="message">
+    <p>This website has been hacked by Silence Node team.</p>
+    <p>We have full access to all user data.</p>
+    <p>The fate of this information depends solely on the site’s management.</p>
+    <p>We are not here to cause chaos, but to offer cooperation for better security.</p>
+    <p>You have one week to contact us on Telegram.</p>
+    <p>After that, we may be forced to sell the data.</p>
+    <p>Updates on our channel:</p>
+    <p><a href="https://t.me/SilenceNode">https://t.me/SilenceNode</a></p>
+    <div class="timestamp">[!] Breach timestamp: 2024-02-14 20:31:00 IRST</div>
+  </div>
+
+  <div class="terminal">
+    <div class="header">
+      <div class="btn red"></div>
+      <div class="btn yellow"></div>
+      <div class="btn green"></div>
+    </div>
+    <div class="content" id="terminalContent"></div>
+  </div>
+
+  <script>
+    const container = document.getElementById("terminalContent");
+
+    const addLine = (html) => {
+        const line = document.createElement("div");
+        line.className = "line";
+        line.innerHTML = html;
+        container.appendChild(line);
+    };
+
+    const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+    async function typeCommand(prefix, command, speed = 100) {
+        const line = document.createElement("div");
+        line.className = "line";
+        container.appendChild(line);
+
+        line.innerHTML = prefix;
+        for (let i = 0; i <= command.length; i++) {
+        line.innerHTML = prefix + `<span class="command">${command.slice(0, i)}</span>`;
+        await sleep(speed);
+        }
+    }
+
+    async function typeStars(promptText, count) {
+        const line = document.createElement("div");
+        line.className = "line";
+        container.appendChild(line);
+
+        for (let i = 0; i <= count; i++) {
+        line.innerHTML = `<span class="output">${promptText} ${'*'.repeat(i)}</span>`;
+        await sleep(100);
+        }
+    }
+
+    async function startSequence() {
+        await typeCommand(
+        `<span class="user">user</span><span class="server">@server</span><span class="prompt"> ~ $ </span>`,
+        'su',
+        100
+        );
+        await typeStars('[sudo] password for root:', 8);
+        await typeCommand(
+        `<span class="user">root</span><span class="server">@server</span><span class="prompt"># </span>`,
+        'echo @SilenceNode',
+        80
+        );
+        addLine(`<span class="output"><a href="https://t.me/SilenceNode">@SilenceNode</a></span>`);
+        addLine(`<span class="user">root</span><span class="server">@server</span><span class="prompt"># </span><span class="cursor-blink">|</span>`);
+    }
+
+    startSequence();
+  </script>
+
+</body>
+</html>
